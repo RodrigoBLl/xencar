@@ -1,0 +1,212 @@
+/* ============================================== */
+/* BANNER */
+/* ============================================== */
+
+.variable,
+.variable ul,
+.variable li{
+    width: 100%;
+    display: block;
+}
+.banner-vip li, .variable li{ float: left; }
+
+/* ============================================== */
+/* TESTIMONIALS */
+/* ============================================== */
+
+.testimonial ul ul.slick-dots{  bottom: 30px;  }
+@media only screen and (max-width: 768px){
+  .testimonial--img{  width: 120px;  }
+  .testimonial--text{  padding-top: 0;  }
+}
+@media only screen and (max-width: 480px){
+  .testimonial--img{  width: 90px;  }
+}
+
+/* ============================================== */
+/* BANNER */
+/* ============================================== */
+
+.banner-img{
+  filter: contrast(110%);
+}
+
+.banner-content{
+  max-width: 1440px;
+  z-index: 1;
+  top:80%;
+  left: 50%;
+
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.banner-content .text{
+  padding: 30px;
+}
+
+.banner-content .h1{  --fs-h1: 2.2rem;  }
+
+.banner-content .text a{
+  margin: 20px auto;
+  padding: 10px 30px;
+  box-shadow: 0px 0px 10px rgb(106 55 255 / 50%);
+  font-size: 0.9rem;
+}
+
+/* h1 & h1 */
+
+.banner .slick-slide.slick-active h2,
+.banner .slick-slide.slick-active a{
+ -webkit-animation-name: fadeInRight;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-duration: 1s;
+
+  -moz-animation-name: fadeInRight;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-duration: 1s;
+
+  -ms-animation-name: fadeInRight;
+  -ms-animation-iteration-count: 1;
+  -ms-animation-duration: 1s;
+
+  -o-animation-name: fadeInRight;
+  -o-animation-iteration-count: 1;
+  -o-animation-duration: 1s;
+
+  animation-name: fadeInRight;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+
+  -webkit-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  -ms-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  -moz-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.banner .slick-slide.slick-active h2{
+  -webkit-animation-delay:0s;
+  -moz-animation-delay:0s;
+  -ms-animation-delay:0s;
+  -o-animation-delay:0s;
+  animation-delay:0s;
+}
+
+.banner .slick-slide.slick-active a{
+  -webkit-animation-delay:0.4s;
+  -moz-animation-delay:0.4s;
+  -ms-animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  animation-delay:0.4s;
+}
+
+.banner .slick-slide h2,
+.banner .slick-slide a{
+  -webkit-animation: fadeOutLeft 3s both 0s;
+  -moz-animation: fadeOutLeft 3s both 0s;
+  -ms-animation: fadeOutLeft 3s both 0s;
+  -o-animation: fadeOutLeft 3s both 0s;
+  animation: fadeOutLeft 3s both 0s;
+}
+
+.banner .slick-slide h2{
+  -webkit-animation-delay:0s;
+  -moz-animation-delay:0s;
+  -ms-animation-delay:0s;
+  -o-animation-delay:0s;
+  animation-delay:0s;
+}
+
+.banner .slick-slide a{
+  -webkit-animation-delay:0.4s;
+  -moz-animation-delay:0.4s;
+  -ms-animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  animation-delay:0.4s;
+}
+
+
+@keyframes fadeInRight {
+    from { opacity: 0;transform:translate3d(30px,0,0);}
+    to   { opacity: 1;transform:translate3d(0,0,0);}
+}
+
+@-moz-keyframes fadeInRight {
+    from { opacity: 0;transform:translate3d(30px,0,0);}
+    to   { opacity: 1;transform:translate3d(0,0,0);}
+}
+
+@-webkit-keyframes fadeInRight {
+    from { opacity: 0;transform:translate3d(30px,0,0);}
+    to   { opacity: 1;transform:translate3d(0,0,0);}
+}
+
+@-ms-keyframes fadeInRight {
+    from { opacity: 0;transform:translate3d(30px,0,0);}
+    to   { opacity: 1;transform:translate3d(0,0,0);}
+}
+
+@-o-keyframes fadeInRight {
+    from { opacity: 0;transform:translate3d(30px,0,0);}
+    to   { opacity: 1;transform:translate3d(0,0,0);}
+}
+
+@keyframes fadeOutLeft {
+    from { opacity: 1;}
+    to   { opacity: 0;}
+}
+
+@-moz-keyframes fadeOutLeft {
+    from { opacity: 1;}
+    to   { opacity: 0;}
+}
+
+@-webkit-keyframes fadeOutLeft {
+    from { opacity: 1;}
+    to   { opacity: 0;}
+}
+
+@-ms-keyframes fadeOutLeft {
+    from { opacity: 1;}
+    to   { opacity: 0;}
+}
+
+@-o-keyframes fadeOutLeft {
+    from { opacity: 1;}
+    to   { opacity: 0;}
+}
+
+@media only screen and (min-width: 769px){
+  .banner-content .h1{  --fs-h1: 4rem;  }
+}
+@media only screen and (min-width: 1441px){
+  .banner-content .h1{  --fs-h1: 5rem;  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .banner .banner-content{
+    top:70%;
+  }
+
+  .banner{
+    margin-top: 0;
+  }
+
+}
+
+@media screen and (max-width: 480px){
+
+  .banner-content .text{
+    padding: 0;
+  }
+  /* .banner h4{
+    display: none;
+  } */
+  .banner a{
+    margin: 20px 0;
+  }
+}
