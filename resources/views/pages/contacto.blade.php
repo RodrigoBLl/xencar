@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Contacto - Xencar')
+@section('description', 'Contáctanos para iniciar tu proyecto digital.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')
@@ -36,8 +39,8 @@
                 <div class="alert">
                 </div>
                 <div class="step-alert"></div>
-                <!-- TODO: Actualizar endpoint del formulario a ruta Laravel -->
-                <form action="" method="post" class="contact" id="login">
+                <!-- Formulario conectado a Laravel -->
+                <form action="{{ route('contact.store') }}" method="post" class="contact" id="login">
                     @csrf
                     <div class="form-steps-content-summary">
                         <div class="form-step-content">

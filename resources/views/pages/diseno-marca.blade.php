@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Diseño de Marca - Xencar')
+@section('description', 'Construimos marcas sólidas y memorables.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

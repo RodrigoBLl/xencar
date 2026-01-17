@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Comercio Electrónico - Xencar')
+@section('description', 'Tiendas en línea y soluciones de e-commerce efectivas.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

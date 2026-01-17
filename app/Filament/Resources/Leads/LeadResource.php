@@ -28,7 +28,8 @@ class LeadResource extends Resource
     {
         return $schema
             ->components([
-                \Filament\Forms\Components\Section::make('Información del Contacto')
+                \Filament\Schemas\Components\Section::make('Información del Contacto')
+
                     ->schema([
                         \Filament\Forms\Components\TextInput::make('first_name')
                             ->label('Nombre')
@@ -43,7 +44,7 @@ class LeadResource extends Resource
                             ->tel(),
                     ])->columns(2),
 
-                \Filament\Forms\Components\Section::make('Detalles del Lead')
+                \Filament\Schemas\Components\Section::make('Detalles del Lead')
                     ->schema([
                         \Filament\Forms\Components\Select::make('service_id')
                             ->relationship('service', 'name')
@@ -117,12 +118,12 @@ class LeadResource extends Resource
                     ->label('Servicio'),
             ])
             ->actions([
-                \Filament\Tables\Actions\ViewAction::make(),
-                \Filament\Tables\Actions\EditAction::make(),
+                \Filament\Actions\ViewAction::make(),
+                \Filament\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                \Filament\Tables\Actions\BulkActionGroup::make([
-                    \Filament\Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

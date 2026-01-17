@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Software Personalizado - Xencar')
+@section('description', 'Software a medida para necesidades específicas.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Consultoría Digital - Xencar')
+@section('description', 'Asesoría experta para la transformación digital de tu negocio.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

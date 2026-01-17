@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', $service->seo_title ?? 'Desarrollo de Software - Xencar')
+@section('description', $service->seo_description ?? 'Soluciones de software a medida para potenciar tu negocio.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')
@@ -9,11 +12,15 @@
         <section class="top-title tc-white c-black">
             <div class="block-box-bg hero">
                 <div class="bg-overlay top-title-grad"></div>
-                <img class="block-box-full--img" src="{{ asset('assets/images/random/7.jpg') }}">
+                @if ($service->hero_image)
+                    <img class="block-box-full--img" src="{{ asset('storage/' . $service->hero_image) }}">
+                @else
+                    <img class="block-box-full--img" src="{{ asset('assets/images/random/7.jpg') }}">
+                @endif
                 <div class="wrapper ai-center jc-center h-40vh">
                     <div class="w-80 p-20-30 small-w-100 t-center">
-                        <h1 class="h1 rel top-title-h">Proceso de desarrollo</h1>
-                        <p class="h4 m-t-20">Software</p>
+                        <h1 class="h1 rel top-title-h">{{ $service->hero_title ?? 'Proceso de desarrollo' }}</h1>
+                        <p class="h4 m-t-20">{{ $service->name }}</p>
                     </div>
                 </div>
             </div>

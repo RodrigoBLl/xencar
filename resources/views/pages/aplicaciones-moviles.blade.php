@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Aplicaciones Móviles - Xencar')
+@section('description', 'Desarrollo de apps nativas y multiplataforma.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Multimedia y Video Marketing - Xencar')
+@section('description', 'Producción audiovisual y estrategias de video marketing.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

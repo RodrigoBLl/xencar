@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Diseño de Logo - Xencar')
+@section('description', 'Creamos la identidad visual perfecta para tu marca.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')

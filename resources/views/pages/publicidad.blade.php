@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title', 'Publicidad y Google Ads - Xencar')
+@section('description', 'Campañas de publicidad digital y gestión de Google Ads.')
+
 @section('content')
     @include('partials.cookies')
     @include('partials.calendly')
