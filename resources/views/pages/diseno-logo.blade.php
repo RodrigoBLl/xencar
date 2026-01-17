@@ -9,22 +9,22 @@
         <section class="top-title tc-white c-black">
             <div class="block-box-bg hero">
                 <div class="bg-overlay top-title-grad"></div>
-                <img class="block-box-full--img" src="{{ asset('assets/images/random/' . rand(1, 11) . '.jpg') }}">
+                <img class="block-box-full--img" src="{{ asset('assets/images/random/15.jpg') }}">
                 <div class="wrapper ai-center jc-center h-40vh">
                     <div class="w-80 p-20-30 small-w-100 t-center">
-                        <h1 class="h1 rel top-title-h">Diseño web</h1>
+                        <h1 class="h1 rel top-title-h">Diseño de logo</h1>
                         <p class="h4 m-t-20">Diseño</p>
                     </div>
                 </div>
             </div>
         </section>
-
         <section>
             <div class="block-content">
                 <div class="service-info content center t-center small-t-left">
-                    <p class="h4">Un sitio web no sólo le dará credibilidad, sino que también ayudará a dar la impresión
-                        de que su empresa es más grande y más exitosa que puede ser en realidad. Los usuarios pueden conocer
-                        tus productos, tu marca, lo cual te sirve para incrementar la reputación de tu empresa.</p>
+                    <p class="h4">La identificación de una marca depende de potentes gráficos, y solo dispones de unos
+                        segundos para captar la atención de las personas y causar impacto. Se invierte tiempo y esfuerzo,
+                        para establecer todo lo relacionado con la imagen de marca, ya que a partir de aquí es donde empieza
+                        el perfil profesional de la empresa.</p>
                 </div>
                 <div class="process rel d-flex fw-wrap ai-start jc-between">
                     <aside class="process-aside w-30 small-w-100 sticky small-t-center">
@@ -32,72 +32,69 @@
                         <p class="uppercase tc-black-soft m-t-0 m-b-30 lts-2">Diseño</p>
                         <div class="process-menu menu-list link m-b-0">
                             <ul class="menu-list--ul grid g-10 col-1">
-                                <li class='menu-list--item'><a href='#01' class='menu-list--link br-5 rel'>Objetivo</a>
+                                <li class='menu-list--item'><a href='#01' class='menu-list--link br-5 rel'>Boceto</a>
                                 </li>
-                                <li class='menu-list--item'><a href='#02' class='menu-list--link br-5 rel'>Boceto</a>
+                                <li class='menu-list--item'><a href='#02'
+                                        class='menu-list--link br-5 rel'>Vectorizado</a></li>
+                                <li class='menu-list--item'><a href='#03' class='menu-list--link br-5 rel'>Color</a>
                                 </li>
-                                <li class='menu-list--item'><a href='#03'
-                                        class='menu-list--link br-5 rel'>Wireframes</a></li>
-                                <li class='menu-list--item'><a href='#04' class='menu-list--link br-5 rel'>Mockup</a>
+                                <li class='menu-list--item'><a href='#04' class='menu-list--link br-5 rel'>Versiones</a>
                                 </li>
-                                <li class='menu-list--item'><a href='#05' class='menu-list--link br-5 rel'>Optimización
-                                        de imágenes</a></li>
+                                <li class='menu-list--item'><a href='#05' class='menu-list--link br-5 rel'>Entrega</a>
+                                </li>
                             </ul>
                         </div>
                     </aside>
                     <div class="w-70 small-w-100 temp">
                         <article id='01' class='process-step'>
                             <img class='br-5 lozad w-100 process-img'
-                                data-src='{{ asset('assets/images/design/web/objetive.png') }}' alt=''
+                                data-src='{{ asset('assets/images/design/logo/sketch.png') }}' alt=''
                                 data-width='1558' data-aspect='41/27' loading='lazy'>
                             <div class='step-text'>
-                                <h3 class='h2 tc-black-soft step-number'>Objetivo</h3>
-                                <p>Antes que nada se debe conocer a detalle el cliente y tomar en cuenta varias preguntas
-                                    sencillas: ¿Qué se quiere lograr?, ¿Qué se quiere lograr? y ¿A quién va dirigido?, para
-                                    esto se necesita una junta con el corporativo calificado para este proyecto.</p>
+                                <h3 class='h2 tc-black-soft step-number'>Boceto</h3>
+                                <p>Este paso es muy importante, se debe tener en claro el objetivo principal, el boceto debe
+                                    tener conceptos muy abstractos para plasmar las primeras ideas.</p>
                             </div>
                         </article>
                         <article id='02' class='process-step'>
                             <img class='br-5 lozad w-100 process-img'
-                                data-src='{{ asset('assets/images/design/web/sketch.png') }}' alt=''
+                                data-src='{{ asset('assets/images/design/logo/vectorized.png') }}' alt=''
                                 data-width='1558' data-aspect='41/27' loading='lazy'>
                             <div class='step-text'>
-                                <h3 class='h2 tc-black-soft step-number'>Boceto</h3>
-                                <p>Ya que esta listo el objetivo, se plasman las mejores ideas para lograrlo, se revisa el
-                                    flujo de trabajo y se hacen correcciones.</p>
+                                <h3 class='h2 tc-black-soft step-number'>Vectorizado</h3>
+                                <p>Si el boceto esta listo, este debe pasarse a vectorizarse para separar los elementos
+                                    gráficos y ver su funcionalidad como marca individual.</p>
                             </div>
                         </article>
                         <article id='03' class='process-step'>
                             <img class='br-5 lozad w-100 process-img'
-                                data-src='{{ asset('assets/images/design/web/wireframe.png') }}' alt=''
+                                data-src='{{ asset('assets/images/design/logo/color.png') }}' alt=''
                                 data-width='1558' data-aspect='41/27' loading='lazy'>
                             <div class='step-text'>
-                                <h3 class='h2 tc-black-soft step-number'>Wireframes</h3>
-                                <p>Para mejorar el concepto, se pasa a digitalizar el boceto, tambien pasa por un proceso de
-                                    revisión, se agrega tamaños tipográficos, estilo de menu, estructura de desarollo y
-                                    estilo corporativo.</p>
+                                <h3 class='h2 tc-black-soft step-number'>Color</h3>
+                                <p>Al igual que el proceso de diseño de personaje, los colores son fundamentales para
+                                    complementar la imagen dentro de un contexto corporativo</p>
                             </div>
                         </article>
                         <article id='04' class='process-step'>
                             <img class='br-5 lozad w-100 process-img'
-                                data-src='{{ asset('assets/images/design/web/mockup.png') }}' alt=''
+                                data-src='{{ asset('assets/images/design/logo/versions.png') }}' alt=''
                                 data-width='1558' data-aspect='41/27' loading='lazy'>
                             <div class='step-text'>
-                                <h3 class='h2 tc-black-soft step-number'>Mockup</h3>
-                                <p>Antes de pasarlo al departamento de programación se envía una propuesta visual final al
-                                    cliente, para su ultima revisión y se discute en el equipo si se ha logrado el objetivo.
-                                </p>
+                                <h3 class='h2 tc-black-soft step-number'>Versiones</h3>
+                                <p>En algunos casos se requiere de presentar versiones horizontales y verticales para su uso
+                                    correcto dependiendo de la superficie o material a utilizar</p>
                             </div>
                         </article>
                         <article id='05' class='process-step'>
                             <img class='br-5 lozad w-100 process-img'
-                                data-src='{{ asset('assets/images/design/web/images.png') }}' alt=''
+                                data-src='{{ asset('assets/images/design/logo/delivery.jpg') }}' alt=''
                                 data-width='1558' data-aspect='41/27' loading='lazy'>
                             <div class='step-text'>
-                                <h3 class='h2 tc-black-soft step-number'>Optimización de imágenes</h3>
-                                <p>Es muy importante hoy en día que un sitio web no tarde mucho en cargar, para esto se hace
-                                    una optimización en el peso de las imágenes y se acomoda de acuerdo al dispositivo
-                                    adecuado.</p>
+                                <h3 class='h2 tc-black-soft step-number'>Entrega</h3>
+                                <p>Para la entrega final se presenta formalmente en un documento en PDF y se agrega un
+                                    pequeño manual de uso de imagen como recomendación, con todos sus archivos e imagenes en
+                                    alta resolucion.</p>
                             </div>
                         </article>
                     </div>
