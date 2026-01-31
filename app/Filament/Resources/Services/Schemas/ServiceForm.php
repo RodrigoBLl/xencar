@@ -44,6 +44,7 @@ class ServiceForm
                         FileUpload::make('hero_image')
                             ->label('Imagen de Fondo')
                             ->image()
+                            ->disk('public')
                             ->directory('services/hero'),
                     ])->columns(2),
 
@@ -71,6 +72,7 @@ class ServiceForm
                         FileUpload::make('seo_image')
                             ->label('Imagen OpenGraph (Redes Sociales)')
                             ->image()
+                            ->disk('public')
                             ->directory('services/seo'),
                     ])->columns(2),
             ]);

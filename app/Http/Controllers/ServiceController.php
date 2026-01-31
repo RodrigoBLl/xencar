@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
@@ -17,9 +16,19 @@ class ServiceController extends Controller
         // 2. Determinar la vista a cargar
         // Intentamos cargar una vista específica basada en el slug (ej: pages.software)
         // Si no existe, podríamos caer en una plantilla genérica (futuro)
-        $viewName = 'pages.' . $slug;
+        $viewName = 'pages.'.$slug;
 
-        if (!view()->exists($viewName)) {
+        if (! view()->exists($viewName)) {
+            // Si no existe vista específica, usar la plantilla genérica
+            $viewName = 'pages.template';
+        }
+
+        if (! view()->exists($viewName)) {
+            // Si no existe vista específica, usar la plantilla genérica
+            $viewName = 'pages.template';
+        }
+
+        if (! view()->exists($viewName)) {
             abort(404, "Vista no encontrada para el servicio: {$slug}");
         }
 
