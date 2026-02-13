@@ -39,13 +39,27 @@
                 <div class="alert">
                 </div>
                 <div class="step-alert"></div>
-                <!-- Formulario conectado a Laravel -->
-                <form action="{{ route('contact.store') }}" method="post" class="contact" id="login">
+
+                {{-- Formulario conectado a Laravel con Capas de Seguridad --}}
+                <form action="{{ route('contact.store') }}" method="post" class="contact" id="contactForm">
                     @csrf
+
+                    {{-- 1. HONEYPOT: Campo oculto para engañar bots --}}
+                    <div style="display:none;">
+                        <label>Si eres humano, deja este campo vacío:</label>
+                        <input type="text" name="username" value="" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    {{-- 2. RECAPTCHA TOKEN: Se llenará con JS --}}
+                    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+
                     <div class="form-steps-content-summary">
+
+                        {{-- PASO 1 --}}
                         <div class="form-step-content">
                             <h2 class="h5 tc-black-soft">1.Información personal:</h2>
-                            <input type="text" name="name" placeholder="Nombre completo" class="input m-b-10 br-5" />
+                            <input type="text" name="name" placeholder="Nombre" class="input m-b-10 br-5" />
+                            <input type="text" name="lastname" placeholder="Apellido" class="input m-b-10 br-5" />
                             <input type="tel" name="phone" placeholder="Teléfono"
                                 class="input m-b-10 br-5 input--tel" />
                             <input type="text" name="email" placeholder="Email" class="input br-5" />
@@ -53,10 +67,12 @@
                             <a href="javascript:void(0)"
                                 class="form-step-button btn c-purple m-t-30 button-invalid">Siguiente</a>
                         </div>
+
+                        {{-- PASO 2 --}}
                         <div class="form-step-content">
                             <h2 class="h5 tc-black-soft">2. ¿Sobre qué subdepartamento tiene preguntas?</h2>
                             <div class="content-tabs d-flex fw-wrap">
-                                <div class="teaser-tab w-30 small-w-100">
+                                <div class="teaser-tab small-w-100" style="width: 30%;">
                                     <ul class="tabs" data-tabgroup="tab-group">
                                         <li><a href="#tab1" class="tab-link active">
                                                 <h3 class="h5">1. Creativo</h3>
@@ -69,55 +85,54 @@
                                             </a></li>
                                     </ul>
                                 </div>
-                                <div id="tab-group" class="tabgroup w-30 med-w-40 small-w-100 c-silver br-5">
+                                <div id="tab-group" class="tabgroup small-w-100 c-silver br-5" style="width: 60%;">
                                     <div id="tab1" class="after p-20">
                                         <label class="check d-flex ai-center">Diseño de logo <input type="checkbox"
-                                                class="input-check" id="project" name="project[]" value="Logo Design">
+                                                class="input-check" name="project[]" value="Logo Design">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="check d-flex ai-center">Diseño web <input type="checkbox"
-                                                class="input-check" id="project" name="project[]" value="Web Design">
+                                                class="input-check" name="project[]" value="Web Design">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="check d-flex ai-center">Diseño de marca <input type="checkbox"
-                                                class="input-check" id="project" name="project[]" value="Brand Design">
+                                                class="input-check" name="project[]" value="Brand Design">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="check d-flex ai-center">Impresión y editorial <input type="checkbox"
-                                                class="input-check" id="project" name="project[]" value="Print Design">
+                                                class="input-check" name="project[]" value="Print Design">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div id="tab2" class="after p-20">
                                         <label class="check d-flex ai-center">Software <input type="checkbox"
-                                                class="input-check" id="project" name="project[]" value="Software">
+                                                class="input-check" name="project[]" value="Software">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="check d-flex ai-center">Software Personalizado <input type="checkbox"
-                                                class="input-check" id="project" name="project[]"
+                                        <label class="check d-flex ai-center">Software Personalizado <input
+                                                type="checkbox" class="input-check" name="project[]"
                                                 value="Software Personalizado">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="check d-flex ai-center">Desarollo Comercio Electrónico <input
-                                                type="checkbox" class="input-check" id="project" name="project[]"
+                                        <label class="check d-flex ai-center">Desarrollo Comercio Electrónico <input
+                                                type="checkbox" class="input-check" name="project[]"
                                                 value="Comercio Electrónico">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div id="tab3" class="after p-20">
                                         <label class="check d-flex ai-center">Consultoría Google Ads <input
-                                                type="checkbox" class="input-check" id="project" name="project[]"
+                                                type="checkbox" class="input-check" name="project[]"
                                                 value="Consultoria Google Ads">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="check d-flex ai-center">Consultoría de Programación <input
-                                                type="checkbox" class="input-check" id="project" name="project[]"
+                                                type="checkbox" class="input-check" name="project[]"
                                                 value="Consultoria Programación">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="check d-flex ai-center">Consultoría Video <input type="checkbox"
-                                                class="input-check" id="project" name="project[]"
-                                                value="Consultoria Video">
+                                                class="input-check" name="project[]" value="Consultoria Video">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -126,6 +141,8 @@
                             <a href="javascript:void(0)"
                                 class="form-step-button btn c-purple m-t-30 button-invalid">Siguiente</a>
                         </div>
+
+                        {{-- PASO 3 --}}
                         <div class="form-step-content">
                             <h2 class="h5 tc-black-soft">3.¿Qué presupuesto considera tener para un proyecto con nosotros?
                             </h2>
@@ -162,6 +179,8 @@
                             <a href="javascript:void(0)"
                                 class="form-step-button btn c-purple m-t-30 button-invalid">Siguiente</a>
                         </div>
+
+                        {{-- PASO 4 --}}
                         <div class="form-step-content">
                             <h2 class="h5 tc-black-soft">4.¿Cómo prefiere ser contactado?</h2>
                             <label class="check d-flex ai-center">Email <input type="radio" class="input-check"
@@ -179,6 +198,8 @@
                             <a href="javascript:void(0)"
                                 class="form-step-button btn c-purple m-t-30 button-invalid">Siguiente</a>
                         </div>
+
+                        {{-- PASO 5 --}}
                         <div class="form-step-content t-center">
                             <h2 class="h5 tc-black-soft t-left">5.¿Cuál es el mejor momento para contactarlo?</h2>
                             <div class="grid col-2 small-col-1">
@@ -195,14 +216,100 @@
                                 </select>
                             </div>
                             <textarea name="comments" id="comments" placeholder="Información de proyecto" class="m-b-30 w-100 textarea br-5"></textarea>
+
+                            {{-- Mensajes de error del backend --}}
+                            @if ($errors->any())
+                                <div class="alert alert-danger c-red tc-white p-10 m-b-20 br-5">
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
+
                             <div id="response"></div>
-                            <input type="submit" id="submit" value="Enviar" name="submit"
+                            <input type="submit" id="submitBtn" value="Enviar" name="send_contact"
                                 class="btn cta submit c-red tc-white" />
                         </div>
                     </div>
                 </form>
             </div>
         </section>
+
+        {{-- SCRIPTS DE SEGURIDAD (reCAPTCHA + Disable Button) --}}
+        <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
+        <script>
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                var btn = document.getElementById('submitBtn');
+                var tokenInput = document.getElementById('recaptcha_token');
+
+                // Si el token ya está lleno, permitir envío nativo
+                if (tokenInput.value) {
+                    return;
+                }
+
+                e.preventDefault();
+                btn.disabled = true;
+                btn.value = 'Enviando...';
+
+                var siteKey = '{{ env('RECAPTCHA_SITE_KEY') }}';
+
+                if (!siteKey) {
+                    console.error('Recaptcha Site Key not found');
+                    // Fallback: enviar sin esperar recaptcha
+                    HTMLFormElement.prototype.submit.call(document.getElementById('contactForm'));
+                    return;
+                }
+
+                // Timeout de seguridad: si Google no responde en 5s, enviar igual
+                var submitTimeout = setTimeout(function() {
+                    console.warn('reCAPTCHA timed out, submitting anyway');
+                    HTMLFormElement.prototype.submit.call(document.getElementById('contactForm'));
+                }, 5000);
+
+                grecaptcha.ready(function() {
+                    grecaptcha.execute(siteKey, {
+                            action: 'contact_form'
+                        })
+                        .then(function(token) {
+                            clearTimeout(submitTimeout);
+                            tokenInput.value = token;
+                            console.log('reCAPTCHA verified, submitting...');
+                            HTMLFormElement.prototype.submit.call(document.getElementById('contactForm'));
+                        })
+                        .catch(function(err) {
+                            clearTimeout(submitTimeout);
+                            console.error('reCAPTCHA error:', err);
+                            // En caso de error, permitimos al usuario intentar de nuevo
+                            btn.disabled = false;
+                            btn.value = 'Enviar (Intentar de nuevo)';
+                            alert(
+                                'Error de conexión con Google reCAPTCHA. Verifica tu conexión o intenta de nuevo.'
+                            );
+                        });
+                });
+            });
+        </script>
+
+        {{-- Limpiar formulario y resetear al Paso 1 si el usuario regresa con "Atrás" --}}
+        <script>
+            // Resetear siempre al cargar: el formulario debe empezar en Paso 1
+            window.addEventListener('pageshow', function() {
+                var form = document.getElementById('contactForm');
+                if (form) {
+                    form.reset();
+                    var btn = document.getElementById('submitBtn');
+                    if (btn) {
+                        btn.disabled = false;
+                        btn.value = 'Enviar';
+                    }
+                    document.getElementById('recaptcha_token').value = '';
+
+                    // Resetear el wizard al Paso 1
+                    jQuery('.form-step-content').hide();
+                    jQuery('.form-step-content').eq(0).show();
+                    jQuery('.step-item').not(':first').removeClass('step-item-active');
+                    jQuery('.step-alert').html('');
+                }
+            });
+        </script>
 
     </main>
 @endsection

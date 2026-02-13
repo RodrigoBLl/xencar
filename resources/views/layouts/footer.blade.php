@@ -69,7 +69,7 @@
   <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
 
   <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"></script>
-  <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
   <script src="https://www.google.com/recaptcha/api.js"></script>
   <script src="{{ url('assets/js/lozad.min.js') }}"></script>

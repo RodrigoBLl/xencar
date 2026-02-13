@@ -283,17 +283,31 @@ jQuery(document).ready(function() {
         let stepContentNext	= _this.closest('.form-step-content').index() +1;
 
         // Loop through the fields 
-        jQuery(".form-step-content").eq(stepContent).find('input, select').each(function() {
-            let fieldsValue = jQuery(this).val();
+        let $step = jQuery(".form-step-content").eq(stepContent);
 
-            if (fieldsValue == "") {
+        // 1. Validar inputs de texto y email (deben tener valor)
+        $step.find('input[type="text"], input[type="email"], input[type="tel"]').each(function() {
+            if (jQuery(this).val().trim() === "") {
                 valid = true;
-                // jQuery(this).after('<span class="step-required"></span>');
-            }
-            if (fieldsValue != "") {
-                // jQuery(this).find('.step-required').remove();
             }
         });
+
+        // 2. Validar checkboxes: al menos uno debe estar marcado (si hay checkboxes en el paso)
+        let $checkboxes = $step.find('input[type="checkbox"]');
+        if ($checkboxes.length > 0 && $checkboxes.filter(':checked').length === 0) {
+            valid = true;
+        }
+
+        // 3. Validar radios: al menos uno debe estar seleccionado (si hay radios en el paso)
+        let radioGroups = {};
+        $step.find('input[type="radio"]').each(function() {
+            radioGroups[jQuery(this).attr('name')] = true;
+        });
+        for (let groupName in radioGroups) {
+            if ($step.find('input[type="radio"][name="' + groupName + '"]:checked').length === 0) {
+                valid = true;
+            }
+        }
 
         // Set boolean true if all not is empty
         if(valid == true) {
