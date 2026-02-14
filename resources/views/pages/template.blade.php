@@ -28,10 +28,10 @@
 
         <section>
             <div class="block-content">
-                <div class="service-info content center t-center small-t-left">
+                <div class="service-info content center t-left">
                     @if ($service->body_content)
                         @foreach ($service->body_content as $block)
-                            <div class="dynamic-block m-b-40">
+                            <div class="dynamic-block rich-content m-b-40">
                                 {!! $block['content'] !!}
                             </div>
                         @endforeach

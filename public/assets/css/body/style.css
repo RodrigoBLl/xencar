@@ -1245,3 +1245,25 @@ input:-webkit-autofill {
   content: counter(term-h, decimal)'.';
   margin-right: 0.5ch;
 }
+
+/* ============================================== */
+/* RICH CONTENT (Dynamic Blocks) */
+/* ============================================== */
+
+.rich-content ul,
+.rich-content ol {
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.rich-content ul {
+  list-style-type: disc;
+}
+
+.rich-content ol {
+  list-style-type: decimal;
+}
+
+.rich-content li {
+  margin-bottom: 5px;
+}

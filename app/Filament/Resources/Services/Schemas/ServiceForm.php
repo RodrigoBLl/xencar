@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Forms\Get;
 use Illuminate\Support\Str;
 
 class ServiceForm
@@ -30,6 +31,9 @@ class ServiceForm
                             ->unique(ignoreRecord: true),
                         Textarea::make('short_description')
                             ->label('Descripción Corta (Home)')
+                            ->live(debounce: 150)
+                            ->maxLength(255)
+                            ->hint(fn ($state, $component) => $component->getMaxLength() - strlen($state) . ' caracteres restantes')
                             ->columnSpanFull(),
                         Toggle::make('is_active')
                             ->label('Activo')
@@ -55,7 +59,9 @@ class ServiceForm
                             ->schema([
                                 RichEditor::make('content')
                                     ->label('Párrafo / Contenido')
-                                    ->required(),
+                                    ->required()
+                                    ->fileAttachmentsDisk('public')
+                                    ->fileAttachmentsDirectory('services/content'),
                             ])
                             ->columnSpanFull()
                             ->defaultItems(1),
