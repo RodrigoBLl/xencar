@@ -35,6 +35,18 @@ class ServiceForm
                             ->maxLength(255)
                             ->hint(fn ($state, $component) => $component->getMaxLength() - strlen($state) . ' caracteres restantes')
                             ->columnSpanFull(),
+                        \Filament\Forms\Components\Select::make('category_id')
+                            ->relationship('category', 'name')
+                            ->label('Categoría')
+                            ->searchable()
+                            ->preload()
+                            ->createOptionForm([
+                                \Filament\Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn ($state, $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                                \Filament\Forms\Components\TextInput::make('slug')->required(),
+                            ]),
                         Toggle::make('is_active')
                             ->label('Activo')
                             ->default(true)

@@ -55,6 +55,9 @@
             <a href='{{ route('service.show', 'publicidad') }}' data-navitem='publicidad'
                 class='h2 nav-link'>Publicidad</a>
         </li>
+        <li class='nav-item nav-animation'>
+            <a href='{{ route('blog.index') }}' class='h2 nav-link'>Blog</a>
+        </li>
     </ul>
     <div class="d-flex fw-wrap">
 

@@ -18,6 +18,15 @@ class Lead extends Model
         'status',
         'assigned_to',
         'notes',
+        'budget',
+        'project_type',
+        'contact_preference',
+        'time_preference',
+        'timezone',
+    ];
+
+    protected $casts = [
+        'project_type' => 'array',
     ];
 
     public function service()

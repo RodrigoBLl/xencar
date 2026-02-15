@@ -6,9 +6,7 @@ use App\Filament\Resources\Leads\Pages\CreateLead;
 use App\Filament\Resources\Leads\Pages\EditLead;
 use App\Filament\Resources\Leads\Pages\ListLeads;
 use App\Filament\Resources\Leads\Pages\ViewLead;
-use App\Filament\Resources\Leads\Schemas\LeadForm;
 use App\Filament\Resources\Leads\Schemas\LeadInfolist;
-use App\Filament\Resources\Leads\Tables\LeadsTable;
 use App\Models\Lead;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -42,6 +40,26 @@ class LeadResource extends Resource
                         \Filament\Forms\Components\TextInput::make('phone')
                             ->label('Teléfono')
                             ->tel(),
+                        \Filament\Forms\Components\Select::make('contact_preference')
+                            ->label('Preferencia de Contacto')
+                            ->options([
+                                'Email' => 'Email',
+                                'Whatsapp' => 'Whatsapp',
+                                'Phone' => 'Teléfono',
+                            ]),
+                        \Filament\Forms\Components\TextInput::make('time_preference')
+                            ->label('Horario Preferido'),
+                        \Filament\Forms\Components\TextInput::make('timezone')
+                            ->label('Zona Horaria'),
+                    ])->columns(2),
+                \Filament\Schemas\Components\Section::make('Intereses y Presupuesto')
+                    ->schema([
+                        \Filament\Forms\Components\TextInput::make('budget')
+                            ->label('Presupuesto'),
+                        \Filament\Forms\Components\TagsInput::make('project_type')
+                            ->label('Servicios de Interés')
+                            ->placeholder('Agregar interés')
+                            ->columnSpanFull(),
                     ])->columns(2),
 
                 \Filament\Schemas\Components\Section::make('Detalles del Lead')
@@ -99,7 +117,22 @@ class LeadResource extends Resource
                         'contacted' => 'warning',
                         'proposal_sent' => 'primary',
                         'closed' => 'success',
+                        default => 'gray',
                     }),
+                \Filament\Tables\Columns\TextColumn::make('budget')
+                    ->label('Presupuesto')
+                    ->sortable(),
+                \Filament\Tables\Columns\TextColumn::make('project_type')
+                    ->label('Intereses')
+                    ->badge()
+                    ->separator(',')
+                    ->color('gray'),
+                \Filament\Tables\Columns\TextColumn::make('contact_preference')
+                    ->label('Pref. Contacto')
+                    ->sortable(),
+                \Filament\Tables\Columns\TextColumn::make('time_preference')
+                    ->label('Horario')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 \Filament\Tables\Columns\TextColumn::make('created_at')
                     ->label('Recibido')
                     ->dateTime()

@@ -22,7 +22,13 @@ class PostResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Blog';
+    protected static ?string $navigationLabel = 'Blog';
+
+    protected static ?string $modelLabel = 'Publicación';
+
+    protected static ?string $pluralModelLabel = 'Publicaciones';
+
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {

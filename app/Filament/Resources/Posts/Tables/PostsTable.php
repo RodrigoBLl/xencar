@@ -16,16 +16,24 @@ class PostsTable
     {
         return $table
             ->columns([
+                \Filament\Tables\Columns\ImageColumn::make('image')
+                    ->label('Imagen')
+                    ->circular(),
                 TextColumn::make('title')
+                    ->label('Título')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('slug')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                IconColumn::make('is_published')
-                    ->boolean()
-                    ->sortable(),
+                TextColumn::make('category.name')
+                    ->label('Categoría')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('is_published')
+                    ->label('Estado')
+                    ->badge()
+                    ->formatStateUsing(fn (bool $state): string => $state ? 'Publicado' : 'Borrador')
+                    ->color(fn (bool $state): string => $state ? 'success' : 'warning'),
                 TextColumn::make('published_at')
+                    ->label('Fecha Publicación')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('created_at')
@@ -34,7 +42,12 @@ class PostsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                \Filament\Tables\Filters\Filter::make('published')
+                    ->label('Publicados')
+                    ->query(fn ($query) => $query->where('is_published', true)),
+                \Filament\Tables\Filters\SelectFilter::make('category_id')
+                    ->relationship('category', 'name')
+                    ->label('Categoría'),
             ])
             ->recordActions([
                 ViewAction::make(),

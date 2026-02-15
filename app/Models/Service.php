@@ -20,12 +20,18 @@ class Service extends Model
         'seo_description',
         'seo_image',
         'is_active',
+        'category_id',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'body_content' => 'array', // If using a block builder like Filament Builder
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function leads()
     {

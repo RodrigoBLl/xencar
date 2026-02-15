@@ -96,6 +96,11 @@ class ContactController extends Controller
             'source_page' => 'contacto',
             'form_type' => 'contact_wizard',
             'status' => 'new',
+            'budget' => $validated['price'] ?? null,
+            'project_type' => $validated['project'] ?? null,
+            'contact_preference' => $validated['contact'] ?? null,
+            'time_preference' => $validated['time'] ?? null,
+            'timezone' => $validated['timezone'] ?? null,
         ]);
 
         Log::info('Lead Created ID: '.$lead->id);
