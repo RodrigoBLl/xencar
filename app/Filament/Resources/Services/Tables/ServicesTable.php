@@ -24,12 +24,19 @@ class ServicesTable
                     ->searchable(),
                 TextColumn::make('hero_title')
                     ->searchable(),
-                ImageColumn::make('hero_image'),
-                TextColumn::make('seo_title')
+                ImageColumn::make('hero_image')
+                    ->label('Imagen'),
+                TextColumn::make('category.name')
+                    ->label('Categoría')
+                    ->sortable()
                     ->searchable(),
-                ImageColumn::make('seo_image'),
                 IconColumn::make('is_active')
+                    ->label('Activo')
                     ->boolean(),
+                TextColumn::make('published_at')
+                    ->label('Fecha Publicación')
+                    ->dateTime()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -40,7 +47,9 @@ class ServicesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                \Filament\Tables\Filters\SelectFilter::make('category_id')
+                    ->relationship('category', 'name')
+                    ->label('Categoría'),
             ])
             ->recordActions([
                 EditAction::make(),

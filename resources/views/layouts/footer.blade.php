@@ -6,27 +6,29 @@
                       <article class='t-left'>
                           <h3 class='h5 tc-white'>Diseño</h3>
                           <ul>
-                              <li><a href='{{ route('service.show', 'diseno-logo') }}' data-navitem=''
-                                      class='footer-link rel d-block p-10'>Diseño de Logo</a></li>
-                              <li><a href='{{ route('service.show', 'paginas-web') }}' data-navitem=''
-                                      class='footer-link rel d-block p-10'>Diseño Web</a></li>
-                              <li><a href='{{ route('service.show', 'diseno-marca') }}' data-navitem='design_brand'
-                                      class='footer-link rel d-block p-10'>Diseño de Marca</a></li>
+                              <li><a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'diseno-logo']) }}'
+                                      data-navitem='' class='footer-link rel d-block p-10'>Diseño de Logo</a></li>
+                              <li><a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'paginas-web']) }}'
+                                      data-navitem='' class='footer-link rel d-block p-10'>Diseño Web</a></li>
+                              <li><a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'diseno-marca']) }}'
+                                      data-navitem='design_brand' class='footer-link rel d-block p-10'>Diseño de
+                                      Marca</a></li>
                           </ul>
                       </article>
                       <article class='t-left'>
                           <h3 class='h5 tc-white'>Software</h3>
                           <ul>
-                              <li><a href='{{ route('service.show', 'software') }}' data-navitem='software-programacion'
+                              <li><a href='{{ route('service.show', ['category' => 'software', 'service' => 'software']) }}'
+                                      data-navitem='software-programacion'
                                       class='footer-link rel d-block p-10'>Software</a></li>
-                              <li><a href='{{ route('service.show', 'comercio-electronico') }}'
+                              <li><a href='{{ route('service.show', ['category' => 'software', 'service' => 'comercio-electronico']) }}'
                                       data-navitem='comercio-electronico' class='footer-link rel d-block p-10'>Comercio
                                       Electrónico</a></li>
 
-                              <li><a href='{{ route('service.show', 'aplicaciones-moviles') }}'
+                              <li><a href='{{ route('service.show', ['category' => 'software', 'service' => 'aplicaciones-moviles']) }}'
                                       data-navitem='programador-aplicaciones'
                                       class='footer-link rel d-block p-10'>Aplicaciones</a></li>
-                              <li><a href='{{ route('service.show', 'software-personalizado') }}'
+                              <li><a href='{{ route('service.show', ['category' => 'software', 'service' => 'software-personalizado']) }}'
                                       data-navitem='software-personalizado'
                                       class='footer-link rel d-block p-10'>Software a la Medida</a></li>
                           </ul>
@@ -34,12 +36,13 @@
                       <article class='t-left'>
                           <h3 class='h5 tc-white'>Servicios</h3>
                           <ul>
-                              <li><a href='{{ route('service.show', 'multimedia') }}' data-navitem='multimedia'
-                                      class='footer-link rel d-block p-10'>Multimedia</a></li>
-                              <li><a href='{{ route('service.show', 'consultoria') }}' data-navitem='consultoria'
-                                      class='footer-link rel d-block p-10'>Consultoría</a></li>
-                              <li><a href='{{ route('service.show', 'publicidad') }}' data-navitem='publicidad'
-                                      class='footer-link rel d-block p-10'>Publicidad</a></li>
+                              <li><a href='{{ route('service.show', ['category' => 'multimedia', 'service' => 'multimedia']) }}'
+                                      data-navitem='multimedia' class='footer-link rel d-block p-10'>Multimedia</a></li>
+                              <li><a href='{{ route('service.show', ['category' => 'consultoria', 'service' => 'consultoria']) }}'
+                                      data-navitem='consultoria' class='footer-link rel d-block p-10'>Consultoría</a>
+                              </li>
+                              <li><a href='{{ route('service.show', ['category' => 'publicidad', 'service' => 'publicidad']) }}'
+                                      data-navitem='publicidad' class='footer-link rel d-block p-10'>Publicidad</a></li>
                           </ul>
                       </article>
                       <article class='t-left'>

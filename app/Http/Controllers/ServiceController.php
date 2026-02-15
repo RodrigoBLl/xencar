@@ -6,33 +6,32 @@ use App\Models\Service;
 
 class ServiceController extends Controller
 {
-    public function show($slug)
+    public function show($category_slug, $service_slug)
     {
-        // 1. Buscar el servicio por slug y que esté activo
-        $service = Service::where('slug', $slug)
+        // 1. Validar Categoría
+        $category = \App\Models\Category::where('slug', $category_slug)
             ->where('is_active', true)
             ->firstOrFail();
 
-        // 2. Determinar la vista a cargar
-        // Intentamos cargar una vista específica basada en el slug (ej: pages.software)
-        // Si no existe, podríamos caer en una plantilla genérica (futuro)
-        $viewName = 'pages.'.$slug;
+        // 2. Buscar el servicio/post dentro de esa categoría
+        $service = Service::where('slug', $service_slug)
+            ->where('category_id', $category->id)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        // 3. Determinar vista
+        // Si es categoría "Blog", usar vista de post
+        if ($category->slug === 'blog') {
+             return view('blog.show', ['post' => $service]);
+        }
+
+        // Para servicios/páginas, buscar vista específica o usar template
+        $viewName = 'pages.'.$service_slug;
 
         if (! view()->exists($viewName)) {
-            // Si no existe vista específica, usar la plantilla genérica
             $viewName = 'pages.template';
         }
 
-        if (! view()->exists($viewName)) {
-            // Si no existe vista específica, usar la plantilla genérica
-            $viewName = 'pages.template';
-        }
-
-        if (! view()->exists($viewName)) {
-            abort(404, "Vista no encontrada para el servicio: {$slug}");
-        }
-
-        // 3. Retornar la vista con los datos del servicio
         return view($viewName, compact('service'));
     }
 }

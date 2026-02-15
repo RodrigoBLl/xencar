@@ -40,6 +40,9 @@ class ServiceForm
                             ->label('Categoría')
                             ->searchable()
                             ->preload()
+                            ->default(fn () => request()->routeIs('filament.admin.resources.blogs.*') ? \App\Models\Category::where('slug', 'blog')->value('id') : null)
+                            ->disabled(fn () => request()->routeIs('filament.admin.resources.blogs.*'))
+                            ->dehydrated() // Ensure value is saved even if disabled
                             ->createOptionForm([
                                 \Filament\Forms\Components\TextInput::make('name')
                                     ->required()
@@ -51,6 +54,8 @@ class ServiceForm
                             ->label('Activo')
                             ->default(true)
                             ->required(),
+                        \Filament\Forms\Components\DateTimePicker::make('published_at')
+                            ->label('Fecha de Publicación'),
                     ])->columns(2),
 
                 Section::make('Hero (Cabecera)')

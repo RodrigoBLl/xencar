@@ -21,10 +21,12 @@ class Service extends Model
         'seo_image',
         'is_active',
         'category_id',
+        'published_at',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'published_at' => 'datetime',
         'body_content' => 'array', // If using a block builder like Filament Builder
     ];
 

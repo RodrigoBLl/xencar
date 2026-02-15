@@ -16,7 +16,8 @@
             </div>
             <ul class='d-flex med-fd-column fw-nowrap h-100vh tc-white'>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'diseno-logo') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'diseno-logo']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/design/home/img_vertical_logo.jpg') }}'>
@@ -27,7 +28,8 @@
                     </a>
                 </li>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'paginas-web') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'paginas-web']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/design/home/img_vertical_web.jpg') }}'>
@@ -38,7 +40,8 @@
                     </a>
                 </li>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'diseno-marca') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'diseno-marca']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/design/home/img_vertical_brand.jpg') }}'>
@@ -58,7 +61,8 @@
             </div>
             <ul class='d-flex med-fd-column fw-nowrap h-100vh tc-white'>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'software') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'software']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/software/home/img_vertical_process.jpg') }}'>
@@ -69,7 +73,8 @@
                     </a>
                 </li>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'comercio-electronico') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'comercio-electronico']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/software/home/img_vertical_mlm.jpg') }}'>
@@ -80,7 +85,8 @@
                     </a>
                 </li>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'aplicaciones-moviles') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'aplicaciones-moviles']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/software/home/img_vertical_apps.jpg') }}'>
@@ -91,7 +97,8 @@
                     </a>
                 </li>
                 <li class='menu-home--item'>
-                    <a href='{{ route('service.show', 'software-personalizado') }}' class='rel d-block menu-home--link'>
+                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'software-personalizado']) }}'
+                        class='rel d-block menu-home--link'>
                         <picture>
                             <source media='(min-width:1081px)'
                                 srcset='{{ asset('assets/images/software/home/img_vertical_custom.jpg') }}'>
@@ -131,7 +138,8 @@
                     <div class='banner-content d-flex ai-center w-100 h-100vh abs m-center'>
                         <div class='text tc-white t-center w-100'>
                             <h2 class='h1' style='text-shadow:2px 2px 4px #000000;'>Consultoría</h2>
-                            <a href='{{ route('service.show', 'consultoria') }}' class='btn outline b-white '>Ver más</a>
+                            <a href='{{ route('service.show', ['category' => 'consultoria', 'service' => 'consultoria']) }}'
+                                class='btn outline b-white '>Ver más</a>
                         </div>
                     </div>
                     <img class='banner-img obj-cover' src='{{ asset('assets/images/hero/consultoria.jpg') }}'
@@ -141,7 +149,8 @@
                     <div class='banner-content d-flex ai-center w-100 h-100vh abs m-center'>
                         <div class='text tc-white t-center w-100'>
                             <h2 class='h1' style='text-shadow:2px 2px 4px #000000;'>Multimedia</h2>
-                            <a href='{{ route('service.show', 'multimedia') }}' class='btn outline b-white '>Ver más</a>
+                            <a href='{{ route('service.show', ['category' => 'multimedia', 'service' => 'multimedia']) }}'
+                                class='btn outline b-white '>Ver más</a>
                         </div>
                     </div>
                     <img class='banner-img obj-cover' src='{{ asset('assets/images/hero/banner_05.jpg') }}'
@@ -151,7 +160,8 @@
                     <div class='banner-content d-flex ai-center w-100 h-100vh abs m-center'>
                         <div class='text tc-white t-center w-100'>
                             <h2 class='h1' style='text-shadow:2px 2px 4px #000000;'>Publicidad</h2>
-                            <a href='{{ route('service.show', 'publicidad') }}' class='btn outline b-white '>Ver más</a>
+                            <a href='{{ route('service.show', ['category' => 'publicidad', 'service' => 'publicidad']) }}'
+                                class='btn outline b-white '>Ver más</a>
                         </div>
                     </div>
                     <img class='banner-img obj-cover' src='{{ asset('assets/images/hero/banner_06.jpg') }}'
