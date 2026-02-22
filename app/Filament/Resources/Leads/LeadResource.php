@@ -31,15 +31,19 @@ class LeadResource extends Resource
                     ->schema([
                         \Filament\Forms\Components\TextInput::make('first_name')
                             ->label('Nombre')
-                            ->required(),
+                            ->required()
+                            ->maxLength(100),
                         \Filament\Forms\Components\TextInput::make('last_name')
-                            ->label('Apellido'),
+                            ->label('Apellido')
+                            ->maxLength(100),
                         \Filament\Forms\Components\TextInput::make('email')
                             ->email()
-                            ->required(),
+                            ->required()
+                            ->maxLength(255),
                         \Filament\Forms\Components\TextInput::make('phone')
                             ->label('Teléfono')
-                            ->tel(),
+                            ->tel()
+                            ->maxLength(20),
                         \Filament\Forms\Components\Select::make('contact_preference')
                             ->label('Preferencia de Contacto')
                             ->options([
@@ -48,14 +52,20 @@ class LeadResource extends Resource
                                 'Phone' => 'Teléfono',
                             ]),
                         \Filament\Forms\Components\TextInput::make('time_preference')
-                            ->label('Horario Preferido'),
+                            ->label('Horario Preferido')
+                            ->maxLength(100)
+                            ->placeholder('Ej: Mañana, Tarde, Noche'),
                         \Filament\Forms\Components\TextInput::make('timezone')
-                            ->label('Zona Horaria'),
+                            ->label('Zona Horaria')
+                            ->maxLength(100)
+                            ->placeholder('Ej: America/Mexico_City'),
                     ])->columns(2),
                 \Filament\Schemas\Components\Section::make('Intereses y Presupuesto')
                     ->schema([
                         \Filament\Forms\Components\TextInput::make('budget')
-                            ->label('Presupuesto'),
+                            ->label('Presupuesto')
+                            ->maxLength(100)
+                            ->placeholder('Ej: $5,000 - $10,000'),
                         \Filament\Forms\Components\TagsInput::make('project_type')
                             ->label('Servicios de Interés')
                             ->placeholder('Agregar interés')
@@ -80,9 +90,14 @@ class LeadResource extends Resource
                             ->required(),
                         \Filament\Forms\Components\Textarea::make('message')
                             ->label('Mensaje Inicial')
+                            ->rows(4)
+                            ->maxLength(2000)
                             ->columnSpanFull(),
                         \Filament\Forms\Components\Textarea::make('notes')
                             ->label('Notas Internas')
+                            ->rows(3)
+                            ->maxLength(1000)
+                            ->helperText('Solo visible para el equipo interno.')
                             ->columnSpanFull(),
                     ])->columns(2),
             ]);
@@ -96,22 +111,31 @@ class LeadResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('first_name')
                     ->label('Nombre')
                     ->searchable()
-                    ->sortable(),
-                \Filament\Tables\Columns\TextColumn::make('last_name')
-                    ->label('Apellido')
-                    ->searchable(),
+                    ->sortable()
+                    ->description(fn ($record) => $record->last_name),
                 \Filament\Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                \Filament\Tables\Columns\TextColumn::make('service.name')
-                    ->label('Servicio')
-                    ->sortable(),
+                    ->searchable()
+                    ->copyable()
+                    ->icon('heroicon-o-envelope'),
+                \Filament\Tables\Columns\TextColumn::make('phone')
+                    ->label('Teléfono')
+                    ->icon('heroicon-o-phone')
+                    ->toggleable(isToggledHiddenByDefault: false),
                 \Filament\Tables\Columns\TextColumn::make('status')
                     ->label('Estado')
                     ->badge()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'new' => 'Nuevo',
+                        'contacted' => 'Contactado',
+                        'proposal_sent' => 'Propuesta Enviada',
+                        'closed' => 'Cerrado',
+                        default => ucfirst($state),
+                    })
                     ->color(fn (string $state): string => match ($state) {
                         'new' => 'info',
                         'contacted' => 'warning',
@@ -121,34 +145,64 @@ class LeadResource extends Resource
                     }),
                 \Filament\Tables\Columns\TextColumn::make('budget')
                     ->label('Presupuesto')
-                    ->sortable(),
+                    ->sortable()
+                    ->badge()
+                    ->color('warning'),
                 \Filament\Tables\Columns\TextColumn::make('project_type')
                     ->label('Intereses')
                     ->badge()
                     ->separator(',')
-                    ->color('gray'),
+                    ->color('gray')
+                    ->toggleable(isToggledHiddenByDefault: false),
                 \Filament\Tables\Columns\TextColumn::make('contact_preference')
                     ->label('Pref. Contacto')
-                    ->sortable(),
+                    ->icon(fn (?string $state): string => match ($state) {
+                        'Email' => 'heroicon-o-envelope',
+                        'Whatsapp' => 'heroicon-o-chat-bubble-left',
+                        'Phone' => 'heroicon-o-phone',
+                        default => 'heroicon-o-question-mark-circle',
+                    })
+                    ->toggleable(isToggledHiddenByDefault: false),
+                \Filament\Tables\Columns\TextColumn::make('service.name')
+                    ->label('Servicio')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 \Filament\Tables\Columns\TextColumn::make('time_preference')
                     ->label('Horario')
                     ->toggleable(isToggledHiddenByDefault: true),
+                \Filament\Tables\Columns\TextColumn::make('timezone')
+                    ->label('Zona Horaria')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                \Filament\Tables\Columns\TextColumn::make('source_page')
+                    ->label('Origen')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 \Filament\Tables\Columns\TextColumn::make('created_at')
                     ->label('Recibido')
-                    ->dateTime()
-                    ->sortable(),
+                    ->since()
+                    ->sortable()
+                    ->tooltip(fn ($record) => $record->created_at?->format('d/m/Y H:i')),
             ])
             ->filters([
                 \Filament\Tables\Filters\SelectFilter::make('status')
+                    ->label('Estado')
                     ->options([
                         'new' => 'Nuevo',
                         'contacted' => 'Contactado',
                         'proposal_sent' => 'Propuesta Enviada',
                         'closed' => 'Cerrado',
                     ]),
+                \Filament\Tables\Filters\SelectFilter::make('contact_preference')
+                    ->label('Pref. Contacto')
+                    ->options([
+                        'Email' => 'Email',
+                        'Whatsapp' => 'WhatsApp',
+                        'Phone' => 'Teléfono',
+                    ]),
                 \Filament\Tables\Filters\SelectFilter::make('service_id')
                     ->relationship('service', 'name')
-                    ->label('Servicio'),
+                    ->label('Servicio')
+                    ->searchable()
+                    ->preload(),
             ])
             ->actions([
                 \Filament\Actions\ViewAction::make(),
