@@ -22,7 +22,11 @@ class PageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Page';
+    protected static ?string $modelLabel = 'Página';
+
+    protected static ?string $pluralModelLabel = 'Páginas';
+
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {

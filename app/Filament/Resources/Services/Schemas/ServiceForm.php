@@ -29,12 +29,7 @@ class ServiceForm
                         TextInput::make('slug')
                             ->required()
                             ->unique(ignoreRecord: true),
-                        Textarea::make('short_description')
-                            ->label('Descripción Corta (Home)')
-                            ->live(debounce: 150)
-                            ->maxLength(255)
-                            ->hint(fn ($state, $component) => $component->getMaxLength() - strlen($state) . ' caracteres restantes')
-                            ->columnSpanFull(),
+
                         \Filament\Forms\Components\Select::make('category_id')
                             ->relationship('category', 'name')
                             ->label('Categoría')
@@ -54,6 +49,9 @@ class ServiceForm
                             ->label('Activo')
                             ->default(true)
                             ->required(),
+                        Toggle::make('show_in_menu')
+                            ->label('Mostrar en Menú')
+                            ->default(true),
                         \Filament\Forms\Components\DateTimePicker::make('published_at')
                             ->label('Fecha de Publicación'),
                     ])->columns(2),
@@ -62,11 +60,15 @@ class ServiceForm
                     ->schema([
                         TextInput::make('hero_title')
                             ->label('Título Principal'),
+                        Textarea::make('short_description')
+                            ->label('Subtítulo del Hero')
+                            ->maxLength(255),
                         FileUpload::make('hero_image')
                             ->label('Imagen de Fondo')
                             ->image()
                             ->disk('public')
-                            ->directory('services/hero'),
+                            ->directory('services/hero')
+                            ->columnSpanFull(),
                     ])->columns(2),
 
                 Section::make('Contenido Dinámico')
@@ -83,6 +85,39 @@ class ServiceForm
                             ->columnSpanFull()
                             ->defaultItems(1),
                     ]),
+
+                Section::make('Proceso Creativo (Aside)')
+                    ->description('Si agregas pasos, se mostrará un aside lateral con el proceso creativo en la página del servicio.')
+                    ->schema([
+                        TextInput::make('process_title')
+                            ->label('Título del Proceso')
+                            ->placeholder('Ej: Proceso Creativo'),
+                        TextInput::make('process_subtitle')
+                            ->label('Subtítulo')
+                            ->placeholder('Ej: Diseño, Multimedia, Software...'),
+                        Repeater::make('process_steps')
+                            ->label('Pasos del Proceso')
+                            ->schema([
+                                TextInput::make('title')
+                                    ->label('Título del paso')
+                                    ->required()
+                                    ->placeholder('Ej: Boceto, Vectorizado, Color...'),
+                                Textarea::make('description')
+                                    ->label('Descripción')
+                                    ->required()
+                                    ->rows(3),
+                                FileUpload::make('image')
+                                    ->label('Imagen del paso')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('services/process'),
+                            ])
+                            ->columnSpanFull()
+                            ->defaultItems(0)
+                            ->addActionLabel('Agregar paso')
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null),
+                    ])->columns(2),
 
                 Section::make('SEO (Buscadores)')
                     ->schema([

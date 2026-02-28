@@ -16,18 +16,24 @@ class Service extends Model
         'hero_title',
         'hero_image',
         'body_content',
+        'process_title',
+        'process_subtitle',
+        'process_steps',
         'seo_title',
         'seo_description',
         'seo_image',
         'is_active',
+        'show_in_menu',
         'category_id',
         'published_at',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'show_in_menu' => 'boolean',
         'published_at' => 'datetime',
-        'body_content' => 'array', // If using a block builder like Filament Builder
+        'body_content' => 'array',
+        'process_steps' => 'array',
     ];
 
     public function category()

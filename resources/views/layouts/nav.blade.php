@@ -1,64 +1,42 @@
+@php
+    $menuCategories = \App\Models\Category::where('slug', '!=', 'blog')
+        ->whereHas('services', fn($q) => $q->where('is_active', true)->where('show_in_menu', true))
+        ->with(['services' => fn($q) => $q->where('is_active', true)->where('show_in_menu', true)->orderBy('name')])
+        ->orderByRaw("FIELD(slug, 'diseno', 'software', 'multimedia', 'consultoria', 'publicidad')")
+        ->get();
+@endphp
+
 <nav id="nav-primary" class="nav c-black d-flex fd-column jc-between closed">
     <ul>
         <li class='nav-item nav-animation'>
             <a href='{{ route('home') }}' data-navitem='' class='h2 nav-link '>Inicio</a>
         </li>
-        <li class='nav-item nav-animation'>
-            <a href='' data-navitem='' class='h2 nav-link has-submenu'>Diseño</a>
-            <ul class='submenu'>
-                <li class='nav-subitem'>
-                    <a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'diseno-logo']) }}'
-                        data-navitem='' class='h4 nav-link '>Diseño de
-                        Logo</a>
+
+        @foreach ($menuCategories as $cat)
+            @if ($cat->services->count() > 1)
+                {{-- Categoría con múltiples servicios → dropdown --}}
+                <li class='nav-item nav-animation'>
+                    <a href='' data-navitem='{{ $cat->slug }}'
+                        class='h2 nav-link has-submenu'>{{ $cat->name }}</a>
+                    <ul class='submenu'>
+                        @foreach ($cat->services as $svc)
+                            <li class='nav-subitem'>
+                                <a href='{{ route('service.show', ['category' => $cat->slug, 'service' => $svc->slug]) }}'
+                                    data-navitem='{{ $svc->slug }}' class='h4 nav-link'>{{ $svc->name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </li>
-                <li class='nav-subitem'>
-                    <a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'paginas-web']) }}'
-                        data-navitem='' class='h4 nav-link '>Paginas
-                        Web</a>
+            @else
+                {{-- Categoría con un solo servicio → link directo --}}
+                @php $svc = $cat->services->first(); @endphp
+                <li class='nav-item nav-animation'>
+                    <a href='{{ route('service.show', ['category' => $cat->slug, 'service' => $svc->slug]) }}'
+                        data-navitem='{{ $svc->slug }}' class='h2 nav-link'>{{ $cat->name }}</a>
                 </li>
-                <li class='nav-subitem'>
-                    <a href='{{ route('service.show', ['category' => 'diseno', 'service' => 'diseno-marca']) }}'
-                        data-navitem='' class='h4 nav-link'>Diseño de
-                        Marca</a>
-                </li>
-            </ul>
-        </li>
-        <li class='nav-item nav-animation'>
-            <a href='' data-navitem='software' class='h2 nav-link has-submenu'>Software</a>
-            <ul class='submenu'>
-                <li class='nav-subitem'>
-                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'software']) }}'
-                        data-navitem='software_process' class='h4 nav-link '>Software</a>
-                </li>
-                <li class='nav-subitem'>
-                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'comercio-electronico']) }}'
-                        data-navitem='e-commerce' class='h4 nav-link '>Comercio
-                        Electrónico</a>
-                </li>
-                <li class='nav-subitem'><a
-                        href='{{ route('service.show', ['category' => 'software', 'service' => 'aplicaciones-moviles']) }}'
-                        data-navitem='software_apps' class='h4 nav-link'>Aplicaciones</a>
-                </li>
-                <li class='nav-subitem'>
-                    <a href='{{ route('service.show', ['category' => 'software', 'service' => 'software-personalizado']) }}'
-                        data-navitem='software_custom' class='h4 nav-link'>Software
-                        Personalizado</a>
-                </li>
-            </ul>
-        </li>
-        <li class='nav-item nav-animation'>
-            <!-- <a href='' data-navitem='blockchain' class='h2 nav-link has-submenu'>Blockchain</a><ul class='submenu'><li class='nav-subitem'><a href='?p=blockchain_smart' data-navitem='blockchain_smart' class='h4 nav-link'>Contratos inteligentes</a></li><li class='nav-subitem'><a href='?p=blockchain_crypto' data-navitem='blockchain_crypto' class='h4 nav-link'>Activos criptográficos</a></li><li class='nav-subitem'><a href='?p=blockchain_mining' data-navitem='blockchain_mining' class='h4 nav-link'>Minería y soporte</a></li></ul></li> <li class='nav-item nav-animation'>-->
-            <a href='{{ route('service.show', ['category' => 'multimedia', 'service' => 'multimedia']) }}'
-                data-navitem='multimedia' class='h2 nav-link'>Multimedia</a>
-        </li>
-        <li class='nav-item nav-animation'>
-            <a href='{{ route('service.show', ['category' => 'consultoria', 'service' => 'consultoria']) }}'
-                data-navitem='consultoria' class='h2 nav-link'>Consultoría</a>
-        </li>
-        <li class='nav-item nav-animation'>
-            <a href='{{ route('service.show', ['category' => 'publicidad', 'service' => 'publicidad']) }}'
-                data-navitem='publicidad' class='h2 nav-link'>Publicidad</a>
-        </li>
+            @endif
+        @endforeach
+
         <li class='nav-item nav-animation'>
             <a href='{{ route('category.show', 'blog') }}' class='h2 nav-link'>Blog</a>
         </li>

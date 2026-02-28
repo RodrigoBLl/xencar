@@ -25,13 +25,7 @@ class ServiceController extends Controller
              return view('blog.show', ['post' => $service]);
         }
 
-        // Para servicios/páginas, buscar vista específica o usar template
-        $viewName = 'pages.'.$service_slug;
-
-        if (! view()->exists($viewName)) {
-            $viewName = 'pages.template';
-        }
-
-        return view($viewName, compact('service'));
+        // Para servicios/páginas, siempre usar template dinámico (contenido editable desde Filament)
+        return view('pages.template', compact('service'));
     }
 }
